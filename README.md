@@ -1,12 +1,12 @@
-#TeensyTouch
+# TeensyTouch
 
 TeensyTouch is a non-blocking capacitance touch reading library for Teensy boards. It allows for easy non-blocking touch sensing and is based on the touch.c library by PaulStoffregen.
 
 Original idea is from PJRC forum user Lalbert (https://forum.pjrc.com/threads/66587-Non-blocking-(no-wait)-touch-sense-(touchRead)-routine-for-Teensy-3-2)
 
-#Usage
+# Usage
 
-######[Also see the examples folder]
+###### [Also see the examples folder]
 
 Include the library in your Arduino sketch:
 
