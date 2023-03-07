@@ -32,8 +32,11 @@ static const uint8_t pin2tsi[] = {
 };
 
 #elif defined(__MK66FX1M0__)
-#define NSCAN     9
-#define PRESCALE  2
+int NSCAN_MAX = 31;
+int PRESCALE_MAX = 7;
+int DVOLT_MAX = 3;
+int REFCHRG_MAX = 7;
+int EXTCHRG_MAX = 7;
 static const uint8_t pin2tsi[] = {
 //0    1    2    3    4    5    6    7    8    9
   9,  10, 255, 255, 255, 255, 255, 255, 255, 255,
@@ -93,7 +96,7 @@ int TeensyTouch::teensyTouchInit(uint8_t pin) {
   return 0;
 
 #elif defined(HAS_KINETIS_TSI_LITE)
-  TSI0_GENCS = TSI_GENCS_REFCHRG(4) | TSI_GENCS_EXTCHRG(3) | TSI_GENCS_PS(PRESCALE)
+  TSI0_GENCS = TSI_GENCS_REFCHRG(REFCHRG) | TSI_GENCS_EXTCHRG(EXTCHRG) | TSI_GENCS_PS(PRESCALE) | TSI_GENCS_DVOLT(DVOLT)
     | TSI_GENCS_NSCN(NSCAN) | TSI_GENCS_TSIEN | TSI_GENCS_EOSF;
   TSI0_DATA = TSI_DATA_TSICH(ch) | TSI_DATA_SWTS;
   return 0;
