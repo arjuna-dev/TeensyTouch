@@ -90,26 +90,25 @@ int TeensyTouch::teensyTouchInit(uint8_t pin) {
   TSI0_PEN = (1 << ch);
   TSI0_SCANC = TSI_SCANC_REFCHRG(3) | TSI_SCANC_EXTCHRG(CURRENT);
   TSI0_GENCS = TSI_GENCS_NSCN(NSCAN) | TSI_GENCS_PS(PRESCALE) | TSI_GENCS_TSIEN | TSI_GENCS_SWTS;
-  delayMicroseconds(10);
   return 0;
 
 #elif defined(HAS_KINETIS_TSI_LITE)
   TSI0_GENCS = TSI_GENCS_REFCHRG(4) | TSI_GENCS_EXTCHRG(3) | TSI_GENCS_PS(PRESCALE)
     | TSI_GENCS_NSCN(NSCAN) | TSI_GENCS_TSIEN | TSI_GENCS_EOSF;
   TSI0_DATA = TSI_DATA_TSICH(ch) | TSI_DATA_SWTS;
-  delayMicroseconds(10);
   return 0;
 #endif
 }
 
 int TeensyTouch::teensyTouchDone() {
-  if (TSI0_GENCS & TSI_GENCS_SCNIP) return false;
+  if (!(TSI0_GENCS & TSI_GENCS_EOSF)) return false;
   else return true;
 }
 
 void TeensyTouch::readNonblocking(int*& ptr_touch_values_array, int*& ptr_pin_values_array){
  
  if (teensyTouchDone()) {
+  TSI0_GENCS |= TSI_GENCS_EOSF; //clear flag (write 1) NEEDED?
   int* touch_array_end = _touch_values_array_first_value + _touch_values_array_size;
   int* pin_array_end = _pins_array_first_value + _pins_array_size;
 
