@@ -2,7 +2,9 @@
 TeensyTouch - Non-Blocking Capacitance Touch Reading Library for Teensy boards
 
 Author: Arjuna Deva (https://github.com/arjuna-dev)
-Original idea is from PJRC forum user Lalbert (https://forum.pjrc.com/)
+
+Original idea is from PJRC forum user Lalbert (https://forum.pjrc.com/threads/66587-Non-blocking-(no-wait)-touch-sense-(touchRead)-routine-for-Teensy-3-2)
+
 Based on PaulStoffregen's teensy cores touch.c library (https://github.com/PaulStoffregen/cores/blob/master/teensy3/touch.c)
 
 MIT License
